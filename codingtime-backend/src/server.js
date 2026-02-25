@@ -3,13 +3,15 @@ const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
+
+app.use(cors())
+app.use(express.json()) // 🔥 PRECISA vir antes das rotas
+
 const authRoutes = require('./routes/auth.routes')
 const userRoutes = require('./routes/user.routes')
 
-app.use('/user', userRoutes)
 app.use('/auth', authRoutes)
-app.use(cors())
-app.use(express.json())
+app.use('/user', userRoutes)
 
 app.get('/', (req, res) => {
   res.json({ message: "CodingTime API rodando 🚀" })

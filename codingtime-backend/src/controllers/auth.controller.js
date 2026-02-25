@@ -48,6 +48,7 @@ exports.login = async (req, res) => {
 
     res.json({ token })
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    console.log("ERRO COMPLETO:", error)
+    res.status(500).json({ error: error.message || "Erro interno" })
   }
 }
